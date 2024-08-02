@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Luma_Suite">
+	<test thread-count="5" name="Luma_Test">
+		<classes>
+			<class name="luma.CreateAccount" />
+			<class name="luma.LogIn" />
+			<class name="luma.LogOut" />
+			<class name="luma.TestLuma" />
+		</classes>
+	</test> <!--
+	Luma_Test -->
+</suite> <!--
+Luma_Suite -->
