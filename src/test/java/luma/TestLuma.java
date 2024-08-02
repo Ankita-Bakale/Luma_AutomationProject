@@ -28,11 +28,11 @@ public class TestLuma {
 	JavascriptExecutor js;
 	WebDriver driver;
 	String filePath = "E:\\Testing\\Selenium\\LumaProject\\LumaData.xlsx";
-	public FileInputStream fis;
-	public XSSFWorkbook workbook;
-	public CreateAccount signUp;
-	public LogOut signOut;
-	public LogIn signIn;
+	FileInputStream fis;
+	XSSFWorkbook workbook;
+	CreateAccount signUp;
+	LogOut signOut;
+	LogIn signIn;
 	Actions act;
 	WebElement th;
 	Select sc;
@@ -44,7 +44,7 @@ public class TestLuma {
 
 	@BeforeSuite
 	public void setUp() throws IOException {
-		this.driver = new EdgeDriver();
+		this.driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
 		driver.get("https://magento.softwaretestingboard.com/");
@@ -245,6 +245,35 @@ public class TestLuma {
 	}
 
 	@Test(priority = 7)
+	// To test Women dropdown is working properly
+	public void womenDrpdwn() throws InterruptedException {
+		signIn = new LogIn(driver);
+		signIn.clickSignInLink();
+		signIn.enterEmail("carolineforbess@gmail.com");
+		signIn.enterPassword("Caroline123");
+		Thread.sleep(2000);
+		signIn.clickSignInBtn();
+
+		// hover on women dropdown and navigate to TEEs section
+		act = new Actions(driver);
+		WebElement womenDrpdwn = driver
+				.findElement(By.xpath("//div[@class='page-wrapper']/descendant::ul[4]/child::li[2]"));
+		act.moveToElement(womenDrpdwn).perform();
+		Thread.sleep(1000);
+
+		WebElement tops = driver.findElement(
+				By.xpath("//div[@class='page-wrapper']/descendant::ul[4]/child::li[2]/child::ul/child::li[1]"));
+		act.moveToElement(tops).perform();
+		Thread.sleep(1000);
+
+		WebElement tees = driver.findElement(By.xpath(
+				"//div[@class='page-wrapper']/descendant::ul[4]/child::li[2]/child::ul/child::li[1]/child::ul/child::li[3]"));
+		act.moveToElement(tees).perform();
+		tees.click();
+		Thread.sleep(1000);
+	}
+
+	@Test(priority = 8)
 	// To Test that the Item visible mode element is Enabled and Disabled
 	public void itemVisibleMode() throws InterruptedException {
 		js = (JavascriptExecutor) driver;
@@ -273,7 +302,7 @@ public class TestLuma {
 		}
 	}
 
-	@Test(priority = 8)
+	@Test(priority = 9)
 	// To Test that the Item visible mode element is Enabled and Disabled
 	public void itemVisibleMode1() throws InterruptedException {
 		js = (JavascriptExecutor) driver;
@@ -302,7 +331,7 @@ public class TestLuma {
 		}
 	}
 
-	@Test(priority = 9)
+	@Test(priority = 10)
 	// To Test that total items are equal to the item count displayed
 	public void itemCount() {
 		// displayed number
@@ -325,7 +354,7 @@ public class TestLuma {
 
 	}
 
-	@Test(priority = 10)
+	@Test(priority = 11)
 	// To Test that sorting of the products is done by Position, price and Product
 	public void sortByDropdwn() throws InterruptedException {
 		WebElement sorter = driver.findElement(By.id("sorter"));
@@ -349,7 +378,7 @@ public class TestLuma {
 		sc3.selectByVisibleText("Position");
 	}
 
-	@Test(priority = 11)
+	@Test(priority = 12)
 	// To test that all the filter dropdown are working and can be selected
 	public void shoppingOptionSelection() throws InterruptedException {
 		driver.navigate().to("https://magento.softwaretestingboard.com/women/tops-women/tees-women.html");
@@ -425,7 +454,7 @@ public class TestLuma {
 		Thread.sleep(1000);
 	}
 
-	@Test(priority = 12)
+	@Test(priority = 13)
 	// To test that user is able to view all the images properly
 	public void viewImage() throws InterruptedException {
 		// Click on the product
@@ -464,7 +493,7 @@ public class TestLuma {
 		cancel.click();
 	}
 
-	@Test(priority = 13)
+	@Test(priority = 14)
 	// To test that item can be added to wishlist or Shared via email
 	public void addWishlist() throws InterruptedException {
 		// to Add item in wishlist
@@ -535,7 +564,7 @@ public class TestLuma {
 		}
 	}
 
-	@Test(priority = 13)
+	@Test(priority = 15)
 	// To test that item can be added to wishlist or Shared via email
 	public void addWishlist1() throws InterruptedException {
 		// to Add item in wishlist
@@ -606,7 +635,7 @@ public class TestLuma {
 		}
 	}
 	
-	@Test(priority = 14)
+	@Test(priority = 16)
 	// To test if user can edit and delete item from wishlist
 	public void wishlistEditDelete() throws InterruptedException {
 		// to test edit option is enabled and working fine
@@ -650,7 +679,7 @@ public class TestLuma {
 		}
 	}
 	
-	@Test(priority = 15)
+	@Test(priority = 17)
 	// Add the product to compare
 	public void addToCompare() throws InterruptedException {
 		WebElement addCompare = driver.findElement(By.xpath("//div[@class='column main']/div[1]//descendant::a[4]"));
@@ -713,7 +742,7 @@ public class TestLuma {
 		driver.navigate().back();
 	}
 	
-//	@Test(priority = 16)
+//	@Test(priority = 18)
 //	// To test that compared product details can be printed or not
 //	public void printCompare() throws InterruptedException, TimeoutException {
 //		WebElement printLink = driver.findElement(By.xpath("//div[@class='column main']/a"));
@@ -779,7 +808,7 @@ public class TestLuma {
 //		}
 //	}
 	
-	@Test(priority = 17)
+	@Test(priority = 19)
 	// To apply required filter to the selected filter
 	public void applyFilter() throws InterruptedException {
 		// Selecting Size
@@ -799,7 +828,7 @@ public class TestLuma {
 		}
 	}
 	
-	@Test(priority = 18)
+	@Test(priority = 20)
 	// To test that user is able to view the product details and all the Reviews
 	public void readReviews() throws InterruptedException {
 		// View Details
@@ -848,7 +877,7 @@ public class TestLuma {
 		js.executeScript("window.scrollTo(0, 0)", "");
 	}
 	
-	@Test(priority = 19)
+	@Test(priority = 21)
 	// To Add item to Cart
 	public void addItemtoCart() throws NoSuchElementException {
 		// To change quantity of product
@@ -884,7 +913,7 @@ public class TestLuma {
 		}
 	}
 	
-	@Test(priority = 20)
+	@Test(priority = 22)
 	public void searchItem() throws InterruptedException {
 		// Search for an item from search Text Box
 		WebElement searchTab = driver.findElement(By.id("search"));
@@ -946,7 +975,7 @@ public class TestLuma {
 		Thread.sleep(3000);
 	}
 	
-	@Test(priority = 21)
+	@Test(priority = 23)
 	// To make changes in Cart
 	public void changesInCart() throws InterruptedException {
 		// Click on Cart to view items in cart
@@ -1013,7 +1042,7 @@ public class TestLuma {
 
 	}
 	
-	@Test(priority = 22)
+	@Test(priority = 24)
 	// Test view and Update Cart page
 	public void shoppingCart() throws InterruptedException {
 		// Move an item from Shopping cart to wishlist
@@ -1103,7 +1132,7 @@ public class TestLuma {
 		Thread.sleep(1000);
 	}
 	
-	@Test(priority = 23)
+	@Test(priority = 25)
 	// Test to add multiple address before proceeding to buy
 	public void addAddress() throws InterruptedException {
 		WebElement firstName = driver.findElement(By.id("firstname"));
@@ -1162,7 +1191,7 @@ public class TestLuma {
 		Thread.sleep(1000);
 	}
 	
-	@Test(priority = 24)
+	@Test(priority = 26)
 	// ToTest Ship to multiple address page
 	public void updateAddress() throws InterruptedException {
 		WebElement enterNewAddBtn = driver.findElement(By.xpath("//body//descendant::button[3]"));
@@ -1235,7 +1264,7 @@ public class TestLuma {
 		proceedToCheckOut.click();
 	}
 	
-	@Test(priority = 25)
+	@Test(priority = 27)
 	// To Test shipping page
 	public void shipping() throws InterruptedException {
 		// select shipping address
@@ -1263,7 +1292,7 @@ public class TestLuma {
 		Thread.sleep(1000);
 	}
 	
-	@Test(priority = 26)
+	@Test(priority = 28)
 	// To test review and pay page and place order
 	public void reviewPay() throws InterruptedException {
 		WebElement billingCheckbox = driver
@@ -1362,7 +1391,7 @@ public class TestLuma {
 //		driver.switchTo().window(originalWindow);
 	}
 	
-	@Test(priority = 27)
+	@Test(priority = 29)
 	// Test To view My orders
 	public void viewOrders() {
 		// go to my account to view the orders
@@ -1413,7 +1442,7 @@ public class TestLuma {
 		logoImg.click();
 	}
 	
-	@Test(priority = 28)
+	@Test(priority = 30)
 	// To test that user is able to and add reviews properly
 	public void writeReviews() throws InterruptedException {
 		driver.navigate().to("https://magento.softwaretestingboard.com/desiree-fitness-tee.html");
