@@ -1479,6 +1479,11 @@ public class TestLuma {
 
 		WebElement logoImg = driver.findElement(By.xpath("//a[@class='logo']/img"));
 		logoImg.click();
-		driver.quit();
 	}
+
+	@AfterClass
+        public void close() {
+            driver.quit();
+        }
+    }
 }
